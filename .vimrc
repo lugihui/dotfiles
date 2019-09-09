@@ -111,25 +111,32 @@ augroup END
 augroup filetype_md
   autocmd!
   autocmd FileType markdown inoremap ;fn ^[] <++><Esc>T[i
-  autocmd FileType markdown inoremap ;foo ^[@] <++><Esc>T@i
+  autocmd FileType markdown inoremap ;fc ^[@] <++><Esc>T@i
   autocmd FileType markdown inoremap ;com <!--  --> <++><Esc>T!lla
-  autocmd FileType markdown inoremap ;em *<Esc>ea*<Esc>
-  autocmd FileType markdown inoremap ;bf **<Esc>ea**<Esc>
+  autocmd FileType markdown inoremap ;em ** <++><Esc>T*hi
+  autocmd FileType markdown inoremap ;bf **** <++><Esc>T*hhi
   autocmd FileType markdown inoremap ;img ![](<++>)<Esc>T[i
   autocmd FileType markdown vnoremap com <Esc>`>a--><Esc>`<i<!--<Esc>
   autocmd FileType markdown vnoremap em <Esc>`>a*<Esc>`<i*<Esc>
   autocmd FileType markdown vnoremap bf <Esc>`>a**<Esc>`<i**<Esc>
 augroup END
 
-" HTML Commands
+" HTML Commands, optimiert für Reveal-Präsentationen
 augroup filetype_html
   autocmd!
   autocmd FileType html setlocal textwidth=0
+  autocmd FileType html inoremap ;ul <ul><cr></ul><Esc>O
+  autocmd FileType html inoremap ;ol <ol><cr></ol><Esc>O
+  autocmd FileType html inoremap ;li <li><p></p></li><Esc>Tphhhi
+  autocmd FileType html inoremap ;lif <li class="fragment"><p></p></li><Esc>Tphhhi
+  autocmd FileType html inoremap ;sec <section><cr></section><Esc>O<h2></h2><Esc>T<hi
+  autocmd FileType html inoremap ;note <aside class="notes"><cr></aside><Esc>O
+  autocmd FileType html inoremap ;fig <figure class=""><cr></figure><Esc>O<img data-src="<++>"/><cr><figcaption><++></figcaption><Esc>2kT"hi
   autocmd FileType html vnoremap com <Esc>`>a--><Esc>`<i<!--<Esc>
 augroup END
 
 " Python Commands
-augroup filetype_html
+augroup filetype_python
   autocmd!
   autocmd FileType python setlocal textwidth=0
   autocmd FileType python setlocal nospell
