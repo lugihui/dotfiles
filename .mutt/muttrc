@@ -150,12 +150,6 @@ color underline brightgreen default
 #		pager		text viewer
 #		
 
-bind generic "\e<" first-entry	# emacs-like bindings for moving to top/bottom
-bind generic \e> last-entry
-bind generic { top-page
-bind generic } bottom-page
-bind generic \177 last-entry
-
 bind index \CP sidebar-prev
 bind index \CN sidebar-next
 bind index \CO sidebar-open
