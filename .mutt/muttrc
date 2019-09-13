@@ -1,198 +1,187 @@
-folder-hook "account.com.mail" "source ~/.mutt/account.com.mail"
-source ~/.mutt/account.com.mail
-source ~/.mutt/mail_aliases
-set alias_file=~/.mutt/mail_aliases	# where I keep my aliases
-set mailcap_path="~/.mutt/mailcap"
-
-alternative_order text/plain text/html
-auto_view text/html
-
-set sidebar_width=13
-set sidebar_visible = yes
-set date_format="%d.%m.%Y um %H:%M"     # Definiert "%d"-Sequenz 
-set attribution="Am %d schrieb %n:"	# how to attribute replies
-set forward_attribution_intro="--- Weitergeleitete Nachricht ---"
-set forward_attribution_trailer="--- Ende weitergeleitete Nachricht ---"
-set forward_format="%s"		# subject to use when forwarding messages
-set noconfirmappend		# don't ask me if i want to append to mailboxes
-set copy=yes			# always save a copy of outgoing messages
-set delete=yes			# purge deleted messages without asking
-#set edit_headers		# let me edit the message header when composing
-set editor="vim"			# editor to use when composing messages
-#set forward_quote		# quote the header and body of forward msgs
-set index_format="%4C %Z %@date@ %-17.17F > %s" # format of the index
-index-format-hook date "~d<1d" "%[%H:%M]" # Nachrichten jünger als 1 Tag
-index-format-hook date "~A"    "%[%d.%m]" # Andere Nachrichten
-#set hdrs			# include `my_hdr' lines in outgoing messages
-#set header			# include message header when replying
-set help			# show the help lines
-#set history=20			# number of lines of history to remember
-#set hostname="mutt.org"	# my DNS domain
-set include			# always include messages when replying
-#set indent_string="> "		# how to quote replied text
-#set locale="C"			# locale to use for printing time
-set nomark_old			# i don't care about whether a message is old
-set mail_check=10		# how often to poll for new mail
-set mbox=+mbox			# where to store read messages
-#set menu_scroll		# no implicit next-page/prev-page
-#set metoo			# remove my address when replying
-set mime_forward=ask-no		# use message/rfc822 type to forward messages
-set move=yes			# don't ask about moving messages, just do it
-#set pager=less			# some people prefer an external pager
-set pager_context=3		# no. of lines of context to give when scrolling
-#set pager_format="-%S- %-20.20f %s"	# format of the pager status bar
-set pager_index_lines=8		# how many index lines to show in the pager
-#set pager_stop			# don't move to the next message on next-page
-#set pgp_strict_enc		# use Q-P encoding when needed for PGP
-#set postponed=+postponed	# mailbox to store postponed messages in
-#set post_indent_string='---end quoted text---'
-#set print=ask-yes		# ask me if I really want to print messages
-#set print_command=/bin/false	# how to print things (I like to save trees)
-#set noprompt_after	# ask me for a command after the external pager exits
-#set quote_regexp="^ *[a-zA-Z]*[>:#}]"	# how to catch quoted text
-#set charset="iso-8859-1"	# character set for your terminal
-set read_inc=25			# show progress when reading a mailbox
-#set recall			# prompt to recall postponed messages
-set reply_to			# always use reply-to if present
-#set reply_regexp="^(re:[ \t]*)+"# how to identify replies in the subject:
-#set resolve		# move to the next message when an action is performed
-#set reverse_alias		# attempt to look up my names for people
-set reverse_name		# use my address as it appears in the message
-				# i am replying to
-set nosave_empty		# remove files when no messages are left
-#set save_name			# save outgoing messages by recipient, if the
-#set sendmail="/usr/lib/sendmail -oi -oem"	# how to deliver mail
-#set shell="/bin/zsh"		# program to use for shell escapes
-#set signature="~/.signature"	# file which contains my signature
-
-# I subscribe to a lot of mailing lists, so this is _very_ useful.  This
-# groups messages on the same subject to make it easier to follow a
-# discussion.  Mutt will draw a nice tree showing how the discussion flows.
-set sort=threads		# primary sorting method
-
-set sort_aux=reverse-date-received	# how to sort subthreads
-#set sort_aux=last-date		# date of the last message in thread
-set sort_browser=reverse-date	# how to sort files in the dir browser
-#set spoolfile='~/mailbox'	# where my new mail is located
-#set status_format="-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?  %l]---(%s)-%>-(%P)---"
-#set status_on_top		# some people prefer the status bar on top
-#set strict_threads		# don't thread by subject
-set tilde			# virtual lines to pad blank lines in the pager
-set timeout=30			# timeout for prompt in the index menu
-#set tmpdir=~/tmp		# where to store temp files
-#set to_chars=" +TCF"
-#set use_8bitmime		# enable the -B8BITMIME sendmail flag
-set nouse_domain		# don't qualify local addresses with $domain
-#set use_from			# always generate the `From:' header field
-set implicit_autoview=yes	# pager shows parts having a mailcap viewer
-set pgp_verify_sig=no		# don't automatically verify message signatures
-#set visual=vim			# editor invoked by ~v in the builtin editor
-#set nowait_key			# prompt when a pipe returns normal status
-set write_inc=25		# show progress while writing mailboxes
-
-# only enable the following IFF you have sendmail 8.8.x or you will not
-# be able to send mail!!!
-#set dsn_notify='failure,delay'	# when to return an error message
-#set dsn_return=hdrs		# what to return in the error message
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #
-# Header fields I don't normally want to see
-#
-ignore *		# this means "ignore all lines by default"
-
-# I do want to see these fields, though!
-unignore	from: subject to cc mail-followup-to \
-		date x-mailer x-url # this shows how nicely wrap long lines
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-#
-# Color definitions
+# ~.mutt/muttrc
 #
 
-#color normal white default
+#########################################################################
+#                      ALLGEMEINE EINSTELLUNGEN                         #
+#########################################################################
+
+## Adressbuch
+set alias_file=~/.mutt/mail_aliases
+source $alias_file
+
+## Anzeigen von Dateitypen
+set mailcap_path="~/.mutt/mailcap"     # File mit Definitionen
+alternative_order text/plain text/html # Text wenn möglich als Plaintext
+auto_view text/html                    # HTML-Nachrichten automatisch mit
+                                       # lynx öffnen
+set implicit_autoview=yes # Wenn ein Mailcap-Eintrag die flag
+                          # "copiousoutput" hat, den entsprechenden
+                          # Nachrichtenteil direkt (im Pager) anzeigen
+mime_lookup application/octet-stream # Hier zuerst im lokalen mime.types-
+                                     # File nachschauen
+
+## Makro zum Anzeigen von HTML-Mails in externem Browser
+## https://wiki.archlinux.org/index.php/mutt#Viewing_HTML
+macro attach 'V' "<pipe-entry>iconv -c --to-code=UTF8 > \
+~/.cache/mutt/mail.html<enter><shell-escape>firefox-developer-edition \
+~/.cache/mutt/mail.html<enter>"
+
+## Shell
+set nowait_key # Nach externem Befehl keine Aufforderung, Tast zu drücken
+               # (in Praxis v.a. der Fall bei macro attach 'V')
+
+#########################################################################
+#                            DARSTELLUNG                                #
+#########################################################################
+
+## Darstellung generell
+set help          # Die help-Zeile einblenden (wichtigste Befehle oben)
+set reverse_alias # Adressen wo vorhanden mit meinen Aliassen ersetzen...
+set sort=threads  # Mails nach Thread organisieren, hat sein Tücken...
+                  # Am besten noch ein Toggle einrichten...
+set sort_aux=reverse-date-received # Sortieren der Threads nach Datum
+set sort_browser=reverse-date      # Dasselbe für File Browser (nicht ganz
+                                   # klar...)
+set nomark_old    # Neue Nachrichten nicht als "old" bezeichnen, wenn
+                  # schon einmal angezeigt...
+set menu_scroll   # Beim Scrollen über die Seite hinaus eine Zeile
+                  # weiterscrollen und nicht PgDn
+# set to_chars=" +TCFL" # Default, siehe dazu das Manual...
+
+## Kopfzeile
+### Kopfzeile-Felder auswählen
+ignore *             # Alle ausschalten
+unignore from subject to cc date
+
+### Darstellen der Kopfzeile-Felder
+unhdr_order *        # Alle bestehenden Settings vergessen
+hdr_order date from subject to cc
+
+## Index-Darstellung
+set index_format="%4C %Z %?[d?%[%H:%M]&%[%d.%m]? %-17.17F > %s"
+
+### Alte Variante mit index-format-hooks, die bei Neomutt nicht mehr
+### funktioniert hat:
+#set index_format="%4C %Z %@date@ %-17.17F > %s"
+#index-format-hook date "~d<1d" "%[%H:%M]" # Nachrichten jünger als 1 Tag
+#index-format-hook date "~A"    "%[%d.%m]" # Andere Nachrichten
+
+## Pager-Darstellung
+set pager_context=3     # Anzahl Zeilen Kontext beim Scrollen
+set pager_index_lines=8 # Anzahl Index-Zeilen in Pager
+set pager_stop          # Am Ende einer Nachricht nicht automatisch zur
+                        # nächsten springen
+
+## Farben
 color hdrdefault blue black
 color quoted brightblue default
 color signature red default
 color indicator green default
 color error brightred default
 color status black blue
-color tree magenta default	# the thread tree in the index menu
+color tree magenta default
 color tilde magenta default
 color message brightcyan default
 color markers brightcyan default
 color attachment brightmagenta default
-color search black brightblue	# how to hilite search patterns in the pager
-
+color search black brightblue
 color header brightred default ^(From|Subject):
-color body magenta default "(ftp|http|https)://[^ ]+"	# point out URLs
-color body magenta default [-a-z_0-9.]+@[-a-z_0-9.]+	# e-mail addresses
+color body magenta default "(ftp|http|https)://[^ ]+"
+color body magenta default [-a-z_0-9.]+@[-a-z_0-9.]+
 color underline brightgreen default
 
-# attributes when using a mono terminal
-# mono header underline ^(From|Subject):
-# mono quoted bold
+#########################################################################
+#                            BINDINGS                                   #
+#########################################################################
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-#
-# Key bindings
-#
-#	maps:
-#		alias		alias menu
-#		attach		attachment menu
-#		browser		directory browser
-#		compose		compose menu
-#		index		message index
-#		pgp		pgp menu
-#		postpone	postponed message recall menu
-#		generic		generic keymap for all of the above
-#		editor		line editor
-#		pager		text viewer
-#		
+## Vim-artige Bindings im Pager
+bind pager j next-line
+bind pager k previous-line
+bind pager G bottom
 
-bind index \CP sidebar-prev
-bind index \CN sidebar-next
-bind index \CO sidebar-open
+## Weitere Bindings in diesem muttrc...
 
-bind pager \CP sidebar-prev
-bind pager \CN sidebar-next
-bind pager \CO sidebar-open
+#########################################################################
+#                            VERFASSEN                                  #
+#########################################################################
 
-# toggle sidebar mit Taste b:
+## Antworten
+set reply_to=ask-yes    # Default, hier nur zu Dokumentation, einmal
+                        # testen, allenfalls ändern zu: set reply_to
+set date_format="%d.%m.%Y um %H:%M"     # Definiert "%d"-Sequenz
+set attribution="Am %d schrieb %n:"
+set include             # Beim Antworten immer Nachricht mitsenden
+set mime_forward=ask-no # Fragen, ob ursprüngliche Nachricht als Anhang
+                        # oder direkt im Textkörper (als Default) senden
+
+## Weiterleiten
+set forward_attribution_intro="--- Weitergeleitete Nachricht ---"
+set forward_attribution_trailer="--- Ende weitergeleitete Nachricht ---"
+set forward_format="Fwd: %s"
+
+#########################################################################
+#                          MAILVERWALTUNG                               #
+#########################################################################
+
+set noconfirmappend # Nicht nachfragen beim Verschieben von Mails in
+                    # andere Ordner
+set delete=yes      # Keine Nachfrage beim Löschen von Nachrichten
+set move=yes        # Gelesene Mails direkt in mbox verschieben
+
+#########################################################################
+#                            VERBINDUNG                                 #
+#########################################################################
+
+unset imap_passive  # Automatisch neue Imap-Verbindung aufbauen
+set mail_check=10   # Alle 10 Sekunden für neue Mails checken
+set timeout=30      # Nach 30s aufhören mit Warten auf Input (und normale
+                    # Aufgaben wie checken erledigen)
+
+#########################################################################
+#                             SICHERHEIT                                #
+#########################################################################
+
+set pgp_verify_sig=no # Signaturen nicht automatisch verifizieren
+#set signature="~/.signature"	# file which contains my signature
+
+
+#########################################################################
+#                              SIDEBAR                                  #
+#########################################################################
+
+## Anzeige
+set sidebar_width=40
+set sidebar_visible = yes
+
+## toggle sidebar mit Taste b:
 macro index b '<enter-command>toggle sidebar_visible<enter>'
 macro pager b '<enter-command>toggle sidebar_visible<enter>'
 
-#macro index \#	"<search>bug<Enter>"	# search for bugs
-#macro index "\""	"<enter-command> set realname=\"real hairy macro\" ?realname<Enter>" # and a comment to boot!
-#macro index f1	"<enter-command>woohoo!"
+## Bindings für Sidebar (J und K machen Probleme...)
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
 
-bind pager G bottom	# just like vi and less
-#macro   pager   \Ck     "<pipe-message> pgp -kaf<Enter>"   # a comment is valid here
-#macro pager X "<pipe-message> morepgp<Enter>"	# pipe PGP message to a script
 
-#bind editor \cy eol	# make ^Y jump to the end of the line
+#########################################################################
+#                             ACCOUNTS                                  #
+#########################################################################
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-#
-# Specify the order of the headers to appear when displaying a message
-#
-#	hdr_order <hdr1> [ <hdr2> ... ]
-#
+## outlook.com
+source ~/.mutt/account.com.outlook
+folder-hook $folder 'source ~/.mutt/account.com.outlook'
 
-unhdr_order *				# forget the previous settings
-hdr_order date from subject to cc
+## mail.ch -- als unterster Eintrag beim Start angezeigt...
+source ~/.mutt/account.com.mail
+folder-hook $folder 'source ~/.mutt/account.com.mail'
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Automatically use entries from ~/.mailcap to view these MIME types
-#
-#	auto_view <type> [ <type> ... ]
+## Shortcuts zum Wechseln der Konten
+macro index,pager <F5> '<sync-mailbox><enter-command>source ~/.mutt/account.com.mail<enter><change-folder>!<enter>'
+macro index,pager <F6> '<sync-mailbox><enter-command>source ~/.mutt/account.com.outlook<enter><change-folder>!<enter>'
 
-auto_view application/x-gunzip
-auto_view application/x-gzip
-
-# That tells mutt to determine the correct MIME type by looking up the
-# file name extension in your mime.types file:
-mime_lookup application/octet-stream
-
+## Anpassen von 'c', damit aktuelle mailbox gezeigt wird
+## (aus: https://wiki.archlinux.org/index.php/mutt#Multiple_accounts)
+macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 
 # EOF
