@@ -94,6 +94,7 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
+alias mutt=neomutt
 alias local='cd /run/media/dl/Volume/local'
 alias cloud='cd /run/media/dl/Volume/cloud'
 alias lehrbuch='cd /run/media/dl/Volume/cloud/Dossiers\ und\ Projekte/Lehrbuch\ Politikgeschichte/Manuskript'
