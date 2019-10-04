@@ -24,7 +24,7 @@ mime_lookup application/octet-stream # Hier zuerst im lokalen mime.types-
 ## Makro zum Anzeigen von HTML-Mails in externem Browser
 ## https://wiki.archlinux.org/index.php/mutt#Viewing_HTML
 macro attach 'V' "<pipe-entry>iconv -c --to-code=UTF8 > \
-~/.cache/mutt/mail.html<enter><shell-escape>firefox-developer-edition \
+~/.cache/mutt/mail.html<enter><shell-escape>$BROWSER \
 ~/.cache/mutt/mail.html<enter>"
 
 ## Shell
@@ -106,6 +106,8 @@ bind pager G bottom
 #                            VERFASSEN                                  #
 #########################################################################
 
+#set signature="~/.signature"	# file which contains my signature
+
 ## Antworten
 set reply_to=ask-yes    # Default, hier nur zu Dokumentation, einmal
                         # testen, allenfalls ändern zu: set reply_to
@@ -142,8 +144,19 @@ set timeout=30      # Nach 30s aufhören mit Warten auf Input (und normale
 #                             SICHERHEIT                                #
 #########################################################################
 
+source ~/.mutt/gpg.rc
+## Folgendes nach: https://gitlab.com/muttmua/mutt/wikis/MuttGuide/UseGPG
+## TODO (wohl eher in gpg.rc?)
+#    pgp_default_key
+#    pgp_sign_as (only if you have a separate signing key)
+#    pgp_use_gpg_agent
+## Evtl. TODO:
+#    crypt_autosign
+#    crypt_opportunistic_encrypt
+#    crypt_replysign
+#    crypt_replysignencrypted
+#    postpone_encrypt
 set pgp_verify_sig=no # Signaturen nicht automatisch verifizieren
-#set signature="~/.signature"	# file which contains my signature
 
 
 #########################################################################
@@ -151,7 +164,7 @@ set pgp_verify_sig=no # Signaturen nicht automatisch verifizieren
 #########################################################################
 
 ## Anzeige
-set sidebar_width=40
+set sidebar_width=45
 set sidebar_visible = yes
 
 ## toggle sidebar mit Taste b:
@@ -172,13 +185,18 @@ bind index,pager \CO sidebar-open
 source ~/.mutt/account.com.outlook
 folder-hook $folder 'source ~/.mutt/account.com.outlook'
 
+## bluewin.ch
+source ~/.mutt/account.com.bluewin
+folder-hook $folder 'source ~/.mutt/account.com.bluewin'
+
 ## mail.ch -- als unterster Eintrag beim Start angezeigt...
 source ~/.mutt/account.com.mail
 folder-hook $folder 'source ~/.mutt/account.com.mail'
 
 ## Shortcuts zum Wechseln der Konten
 macro index,pager <F5> '<sync-mailbox><enter-command>source ~/.mutt/account.com.mail<enter><change-folder>!<enter>'
-macro index,pager <F6> '<sync-mailbox><enter-command>source ~/.mutt/account.com.outlook<enter><change-folder>!<enter>'
+macro index,pager <F6> '<sync-mailbox><enter-command>source ~/.mutt/account.com.bluewin<enter><change-folder>!<enter>'
+macro index,pager <F7> '<sync-mailbox><enter-command>source ~/.mutt/account.com.outlook<enter><change-folder>!<enter>'
 
 ## Anpassen von 'c', damit aktuelle mailbox gezeigt wird
 ## (aus: https://wiki.archlinux.org/index.php/mutt#Multiple_accounts)

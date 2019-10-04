@@ -94,7 +94,7 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
-alias mutt=neomutt
+alias mutt='neomutt'
 alias local='cd /run/media/dl/Volume/local'
 alias cloud='cd /run/media/dl/Volume/cloud'
 alias lehrbuch='cd /run/media/dl/Volume/cloud/Dossiers\ und\ Projekte/Lehrbuch\ Politikgeschichte/Manuskript'
@@ -166,8 +166,12 @@ ex ()
   fi
 }
 
-# Damit Ranger mit vim arbeitet...
+# Standartprogramme festlegen
 VISUAL=vim; export VISUAL EDITOR=vim; export EDITOR
+export BROWSER=firefox-developer-edition
 
 # ~/Scripts zu den Systemvariablen hinzufügen:
 export PATH="${PATH}:/home/dl/Scripts"
+
+# Vim-Modus
+set -o vi
