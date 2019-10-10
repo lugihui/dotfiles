@@ -66,7 +66,10 @@ set cm=blowfish2
 
 "Einbinden der Plugins in ~/.vim/plugged mit vim-plug
 call plug#begin()
+" Für Distraction free vim:
 Plug 'junegunn/goyo.vim'
+" Für farbige Darstellung von csv-Files etc.:
+Plug 'mechatroner/rainbow_csv'
 call plug#end()
 
 " Mappings
