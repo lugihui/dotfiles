@@ -1,4 +1,4 @@
-#
+
 # ~/.bashrc
 #
 
@@ -79,6 +79,7 @@ if ${use_color} ; then
 	alias grep='grep --colour=auto'
 	alias egrep='egrep --colour=auto'
 	alias fgrep='fgrep --colour=auto'
+  alias tree='tree -C'
 else
 	if [[ ${EUID} == 0 ]] ; then
 		# show root@ when we don't have colors
@@ -141,7 +142,7 @@ shopt -s histappend
 export HISTCONTROL=ignoredups
 
 # Folgende Befehle ignorieren
-export HISTIGNORE="ls"
+export HISTIGNORE="ls:clear:pwd:exit"
 
 #
 # # ex - archive extractor
