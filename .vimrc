@@ -26,6 +26,9 @@ let g:solarized_termtrans = 1
 colorscheme solarized
 call togglebg#map("<F5>")
 
+" Kopfzeile im File-Browser ausblenden
+let g:netrw_banner = 0
+
 " Titel des Files auch bei nur einem Fenster anzeigen:
 set laststatus=2
 
@@ -57,9 +60,14 @@ set splitright " Vertikale Splits rechs (defalt: links)
 let g:tex_flavor='latex'
 let g:markdown_folding=1 "aktiviert Faltung bei Markdown
 
-" Rechtschreibeprüfung, mit <F8> ein- und ausschalten
+" Rechtschreibeprüfung, mit <F7> ein- und und mit <F8> ausschalten
 setlocal spell spelllang=de_ch
 map <F8> :setlocal nospell! <return>
+map <F7> :setlocal spell spelllang=de_ch <return>
+
+" Darstellung Rechtschreibefehler
+hi clear SpellBad
+hi SpellBad cterm=underline
 
 " Methode zum verschlüsseln von Text
 set cm=blowfish2
@@ -128,6 +136,11 @@ augroup END
 augroup filetype_html
   autocmd!
   autocmd FileType html setlocal textwidth=0
+  autocmd FileType html inoremap ;h2 <h2></h2><Esc>T<hi
+  autocmd FileType html inoremap ;h3 <h3></h3><Esc>T<hi
+  autocmd FileType html inoremap ;h4 <h4></h4><Esc>T<hi
+  autocmd FileType html inoremap ;p <p></p><Esc>T<hi
+  autocmd FileType html inoremap ;div <div><cr></div><Esc>O
   autocmd FileType html inoremap ;ul <ul><cr></ul><Esc>O
   autocmd FileType html inoremap ;ol <ol><cr></ol><Esc>O
   autocmd FileType html inoremap ;li <li><p></p></li><Esc>Tphhhi
@@ -135,6 +148,7 @@ augroup filetype_html
   autocmd FileType html inoremap ;sec <section><cr></section><Esc>O<h2></h2><Esc>T<hi
   autocmd FileType html inoremap ;note <aside class="notes"><cr></aside><Esc>O
   autocmd FileType html inoremap ;fig <figure class=""><cr></figure><Esc>O<img data-src="<++>"/><cr><figcaption><++></figcaption><Esc>2kT"hi
+  autocmd FileType html inoremap ;back data-background=""<Esc>i
   autocmd FileType html vnoremap com <Esc>`>a--><Esc>`<i<!--<Esc>
 augroup END
 
