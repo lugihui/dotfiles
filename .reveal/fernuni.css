@@ -126,6 +126,10 @@ body {
   z-index:-10;
 }
 
+.reveal .breit {
+  width: 90%;
+}
+
 .reveal figcaption {
 	font-size: 0.8em; }
 

@@ -38,10 +38,11 @@ set nowait_key # Nach externem Befehl keine Aufforderung, Tast zu drücken
 ## Darstellung generell
 set help          # Die help-Zeile einblenden (wichtigste Befehle oben)
 set reverse_alias # Adressen wo vorhanden mit meinen Aliassen ersetzen...
-set sort=threads  # Mails nach Thread organisieren, hat sein Tücken...
+set sort=reverse-date # Sortieren nach Datum
+#set sort=threads  # Mails nach Thread organisieren, hat sein Tücken...
                   # Am besten noch ein Toggle einrichten...
-set sort_aux=reverse-date-received # Sortieren der Threads nach Datum
-set sort_browser=reverse-date      # Dasselbe für File Browser (nicht ganz
+#set sort_aux=reverse-date-received # Sortieren der Threads nach Datum
+#set sort_browser=reverse-date      # Dasselbe für File Browser (nicht ganz
                                    # klar...)
 set nomark_old    # Neue Nachrichten nicht als "old" bezeichnen, wenn
                   # schon einmal angezeigt...
@@ -58,14 +59,14 @@ unignore from subject to cc date
 unhdr_order *        # Alle bestehenden Settings vergessen
 hdr_order date from subject to cc
 
-## Index-Darstellung
-set index_format="%4C %Z %?[d?%[%H:%M]&%[%d.%m]? %-17.17F > %s"
+## Index-Darstellung für Neomutt
+#set index_format="%4C %Z %?[d?%[%H:%M]&%[%d.%m]? %-17.17F > %s"
 
 ### Alte Variante mit index-format-hooks, die bei Neomutt nicht mehr
 ### funktioniert hat:
-#set index_format="%4C %Z %@date@ %-17.17F > %s"
-#index-format-hook date "~d<1d" "%[%H:%M]" # Nachrichten jünger als 1 Tag
-#index-format-hook date "~A"    "%[%d.%m]" # Andere Nachrichten
+set index_format="%4C %Z %@date@ %-17.17F > %s"
+index-format-hook date "~d<1d" "%[%H:%M]" # Nachrichten jünger als 1 Tag
+index-format-hook date "~A"    "%[%d.%m]" # Andere Nachrichten
 
 ## Pager-Darstellung
 set pager_context=3     # Anzahl Zeilen Kontext beim Scrollen
