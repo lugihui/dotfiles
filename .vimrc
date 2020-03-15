@@ -136,9 +136,11 @@ augroup END
 augroup filetype_html
   autocmd!
   autocmd FileType html setlocal textwidth=0
+  autocmd FileType html inoremap ;h1 <h1></h1><Esc>T<hi
   autocmd FileType html inoremap ;h2 <h2></h2><Esc>T<hi
   autocmd FileType html inoremap ;h3 <h3></h3><Esc>T<hi
   autocmd FileType html inoremap ;h4 <h4></h4><Esc>T<hi
+  autocmd FileType html inoremap ;h5 <h5></h5><Esc>T<hi
   autocmd FileType html inoremap ;p <p></p><Esc>T<hi
   autocmd FileType html inoremap ;div <div><cr></div><Esc>O
   autocmd FileType html inoremap ;ul <ul><cr></ul><Esc>O
