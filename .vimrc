@@ -108,8 +108,8 @@ augroup filetype_tex
   autocmd FileType tex inoremap ;fn \footnote{} <++><Esc>T{i
   autocmd FileType tex inoremap ;fc \footcite{} <++><Esc>T{i
   autocmd FileType tex inoremap ;fcp \footcite[]{<++>} <++><Esc>T[i
-  autocmd FileType tex inoremap ;enq \enquote{} <++><Esc>T{i
-  autocmd FileType tex inoremap ;sing \enquote*{} <++><Esc>T{i
+  autocmd FileType tex inoremap ;quo \enquote{} <++><Esc>T{i
+  autocmd FileType tex inoremap ;squo \enquote*{} <++><Esc>T{i
   autocmd FileType tex inoremap ;em \emph{} <++><Esc>T{i
   autocmd FileType tex inoremap ;bf \bfseries{} <++><Esc>T{i
   autocmd FileType tex vnoremap enq <Esc>`>a}<Esc>`<i\enquote{<Esc>
@@ -142,6 +142,8 @@ augroup filetype_html
   autocmd FileType html inoremap ;h4 <h4></h4><Esc>T<hi
   autocmd FileType html inoremap ;h5 <h5></h5><Esc>T<hi
   autocmd FileType html inoremap ;p <p></p><Esc>T<hi
+  autocmd FileType html inoremap ;quo &laquo;&raquo; <++><Esc>T&hi
+  autocmd FileType html inoremap ;squo &lsaquo;&rsaquo; <++><Esc>T&hi
   autocmd FileType html inoremap ;div <div><cr></div><Esc>O
   autocmd FileType html inoremap ;ul <ul><cr></ul><Esc>O
   autocmd FileType html inoremap ;ol <ol><cr></ol><Esc>O
@@ -152,6 +154,8 @@ augroup filetype_html
   autocmd FileType html inoremap ;fig <figure class=""><cr></figure><Esc>O<img data-src="<++>"/><cr><figcaption><++></figcaption><Esc>2kT"hi
   autocmd FileType html inoremap ;back data-background=""<Esc>i
   autocmd FileType html vnoremap com <Esc>`>a--><Esc>`<i<!--<Esc>
+  autocmd FileType html vnoremap em <Esc>`>a</i><Esc>`<i<i><Esc>
+  autocmd FileType html vnoremap bf <Esc>`>a</b><Esc>`<i<b><Esc>
 augroup END
 
 " Python Commands
