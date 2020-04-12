@@ -72,6 +72,14 @@ hi SpellBad cterm=underline
 " Methode zum verschlüsseln von Text
 set cm=blowfish2
 
+" Kalender-Settings:
+" mit Montag starten
+let g:calendar_monday = 1
+" Tage, Monate und Navis umbenennen:
+let g:calendar_wruler = 'So Mo Di Mi Do Fr Sa'
+let g:calendar_mruler = 'Jan,Feb,Mar,Apr,Mai,Jun,Jul,Aug,Sep,Okt,Nov,Dez'
+let g:calendar_navi_label = 'Vorher,Heute,Nachher'
+
 "Einbinden der Plugins in ~/.vim/plugged mit vim-plug
 call plug#begin()
 " Für Distraction free vim:
@@ -112,8 +120,8 @@ augroup filetype_tex
   autocmd FileType tex inoremap ;squo \enquote*{} <++><Esc>T{i
   autocmd FileType tex inoremap ;em \emph{} <++><Esc>T{i
   autocmd FileType tex inoremap ;bf \bfseries{} <++><Esc>T{i
-  autocmd FileType tex vnoremap enq <Esc>`>a}<Esc>`<i\enquote{<Esc>
-  autocmd FileType tex vnoremap sing <Esc>`>a}<Esc>`<i\enquote*{<Esc>
+  autocmd FileType tex vnoremap quo <Esc>`>a}<Esc>`<i\enquote{<Esc>
+  autocmd FileType tex vnoremap squo <Esc>`>a}<Esc>`<i\enquote*{<Esc>
   autocmd FileType tex vnoremap em <Esc>`>a}<Esc>`<i\emph{<Esc>
   autocmd FileType tex vnoremap bf <Esc>`>a}<Esc>`<i\textbf{<Esc>
 augroup END
@@ -130,6 +138,11 @@ augroup filetype_md
   autocmd FileType markdown vnoremap com <Esc>`>a--><Esc>`<i<!--<Esc>
   autocmd FileType markdown vnoremap em <Esc>`>a*<Esc>`<i*<Esc>
   autocmd FileType markdown vnoremap bf <Esc>`>a**<Esc>`<i**<Esc>
+augroup END
+
+augroup filetype_bib
+  autocmd!
+  autocmd FileType html setlocal textwidth=0
 augroup END
 
 " HTML Commands, optimiert für Reveal-Präsentationen
@@ -156,6 +169,8 @@ augroup filetype_html
   autocmd FileType html vnoremap com <Esc>`>a--><Esc>`<i<!--<Esc>
   autocmd FileType html vnoremap em <Esc>`>a</i><Esc>`<i<i><Esc>
   autocmd FileType html vnoremap bf <Esc>`>a</b><Esc>`<i<b><Esc>
+  autocmd FileType html vnoremap quo <Esc>`>a&raquo;<Esc>`<i&laquo;<Esc>
+  autocmd FileType html vnoremap squo <Esc>`>a&rsaquo;<Esc>`<i&lsaquo;<Esc>
 augroup END
 
 " Python Commands
@@ -164,3 +179,11 @@ augroup filetype_python
   autocmd FileType python setlocal textwidth=0
   autocmd FileType python setlocal nospell
 augroup END
+
+" Befehl für Wiki-Tagebuch
+command! Tage VimwikiDiaryIndex
+augroup vimwikigroup
+    autocmd!
+    " automatically update links on read diary
+    autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
+augroup end
