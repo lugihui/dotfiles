@@ -107,6 +107,34 @@ body {
   z-index:-10;
   width:70%;
 }
+
+.reveal .threeleft {
+  left:-8.33%;
+  text-align: center;
+  float: left;
+  width:33%;
+  z-index:-10;
+}
+
+.reveal .threemiddle {
+  left:20%;
+  top:75px;
+  text-align: center;
+  float: left;
+  width:33%;
+  z-index:-10;
+}
+
+.reveal .threeright {
+  left:45%;
+  top:75px;
+  text-align: center;
+  float: left;
+  width:33%;
+  z-index:-10;
+}
+
+
 .reveal figcaption {
   font-size: 0.8em; }
 
