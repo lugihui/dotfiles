@@ -165,7 +165,7 @@ set pgp_verify_sig=no # Signaturen nicht automatisch verifizieren
 #########################################################################
 
 ## Anzeige
-set sidebar_width=45
+set sidebar_width=18
 set sidebar_visible = yes
 
 ## toggle sidebar mit Taste b:
@@ -190,24 +190,24 @@ macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract 
 #########################################################################
 
 ## outlook.com
-source ~/.mutt/account.com.outlook
-folder-hook $folder 'source ~/.mutt/account.com.outlook'
+# source ~/.mutt/account.com.outlook
+# folder-hook $folder 'source ~/.mutt/account.com.outlook'
 
 ## bluewin.ch
-source ~/.mutt/account.com.bluewin
-folder-hook $folder 'source ~/.mutt/account.com.bluewin'
+# source ~/.mutt/account.com.bluewin
+# folder-hook $folder 'source ~/.mutt/account.com.bluewin'
 
 ## mail.ch -- als unterster Eintrag beim Start angezeigt...
 source ~/.mutt/account.com.mail
 folder-hook $folder 'source ~/.mutt/account.com.mail'
 
 ## Shortcuts zum Wechseln der Konten
-macro index,pager <F5> '<sync-mailbox><enter-command>source ~/.mutt/account.com.mail<enter><change-folder>!<enter>'
-macro index,pager <F6> '<sync-mailbox><enter-command>source ~/.mutt/account.com.bluewin<enter><change-folder>!<enter>'
-macro index,pager <F7> '<sync-mailbox><enter-command>source ~/.mutt/account.com.outlook<enter><change-folder>!<enter>'
+# macro index,pager <F5> '<sync-mailbox><enter-command>source ~/.mutt/account.com.mail<enter><change-folder>!<enter>'
+# macro index,pager <F6> '<sync-mailbox><enter-command>source ~/.mutt/account.com.bluewin<enter><change-folder>!<enter>'
+# macro index,pager <F7> '<sync-mailbox><enter-command>source ~/.mutt/account.com.outlook<enter><change-folder>!<enter>'
 
 ## Anpassen von 'c', damit aktuelle mailbox gezeigt wird
 ## (aus: https://wiki.archlinux.org/index.php/mutt#Multiple_accounts)
-macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
+# macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 
 # EOF
